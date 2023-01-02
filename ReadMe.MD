@@ -96,9 +96,23 @@ public class UserController {
 }
 ```
 
+ii>OPEN CLOSED PRINCIPLE:
+Software entities -classes,Modules ,Methods etc. should be open for extension ,but closed for modification.
+
+    open for extension      -->we should be able to extends existing behaviour. 
+       
+        In OOP,we have base class that is already written and tested.if we want to modifiy the one of the existing method
+        present in base class then we should be able to do that.And we can do that using inheritance by overriding that method in
+        derived class.    
+
+    closed for modification -->existing code remains unchanged-Whatever already wwritten should not be changed
+        
+        we should not go and modify base class method which is already written and tested .
 
 
-
+eg. if we take a look into any good framework like struts or spring,we will see that we can not change their core logic
+& request processing ,but we modify the desired application flow just
+by extending some classes and plugin then in configuration files.
 
 
 
