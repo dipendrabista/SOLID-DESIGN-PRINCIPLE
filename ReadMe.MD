@@ -109,10 +109,19 @@ Software entities -classes,Modules ,Methods etc. should be open for extension ,b
         
         we should not go and modify base class method which is already written and tested .
 
-
 eg. if we take a look into any good framework like struts or spring,we will see that we can not change their core logic
-& request processing ,but we modify the desired application flow just
-by extending some classes and plugin then in configuration files.
+& request processing ,but we modify the desired application flow just by extending some classes and plugin then in
+configuration files.
+
+iii>LISKOV SUBSTITUTION PRINCIPLE:
+We should be able to substitute base class objects with child class objects and this should not alter
+behaviour/characteristics of program.
+
+    note: This is not simple type based substitution rather it is a behavioural subtyping.
+    That means if base class is providing some behaviour and that base class is substituted
+    by derived class object then behaviour should not alter.
+
+
 
 
 
