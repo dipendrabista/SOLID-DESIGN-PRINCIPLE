@@ -1,6 +1,6 @@
 ***SOLID DESIGN PRINCIPLE***
 
-i> SINGLE RESPONSIBILITY PRINCIPLE:
+i> **SINGLE RESPONSIBILITY PRINCIPLE**:
 There should never be more than one reason for a class to change
 
 Let's take an example we have class called AwesomeClass which create and send messege to remote server that is listening
@@ -96,7 +96,7 @@ public class UserController {
 }
 ```
 
-ii>OPEN CLOSED PRINCIPLE:
+ii>**OPEN CLOSED PRINCIPLE**:
 Software entities -classes,Modules ,Methods etc. should be open for extension ,but closed for modification.
 
     open for extension      -->we should be able to extends existing behaviour. 
@@ -113,7 +113,7 @@ eg. if we take a look into any good framework like struts or spring,we will see 
 & request processing ,but we modify the desired application flow just by extending some classes and plugin then in
 configuration files.
 
-iii>LISKOV SUBSTITUTION PRINCIPLE:
+iii>**LISKOV SUBSTITUTION PRINCIPLE**:
 We should be able to substitute base class objects with child class objects and this should not alter
 behaviour/characteristics of program.
 
@@ -121,10 +121,55 @@ behaviour/characteristics of program.
     That means if base class is providing some behaviour and that base class is substituted
     by derived class object then behaviour should not alter.
 
+IV>**INTERFACE SEGREGATION PRINCIPLE** :
 
+CLIENTS SHOULD NOT BE FORCED TO DEPEND UPON INTERFACES THAT THEY DO NOT USE.
 
+Term we often use in Interface segregation
 
+**Interface Pollution**: we should not make our interface big
 
+**sign of interface pollution**
+
+- classes have empty method implementation
+
+* method implementation throw UnsupportedOperationException(or similar)
+
++ Method implementation return null or default/dummy values
+
+E.G
+
+In persistence service ,findByName method is not applicable to all entity like order findByName make no sense for Order
+Entity.
+
+ ```java
+ //common interface to be implemented by all persistence services. 
+public interface PersistenceService<T extends Entity> {
+
+    public void save(T entity);
+
+    public void delete(T entity);
+
+    public T findById(Long id);
+
+    public List<T> findByName(String name);
+}
+```
+
+SOLUTION: remove findByName from PersistenceService and move child class of UserPersistence.
+
+```java
+//common interface to be implemented by all persistence services.
+public interface PersistenceService<T extends Entity> {
+
+    public void save(T entity);
+
+    public void delete(T entity);
+
+    public T findById(Long id);
+
+}
+```
 
 
 
