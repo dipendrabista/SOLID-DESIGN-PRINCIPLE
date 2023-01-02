@@ -171,5 +171,84 @@ public interface PersistenceService<T extends Entity> {
 }
 ```
 
+v> DEPENDENCY INVERSION PRINCIPLE
+
+A.High level modules should not depend upon low level modules .
+Both should depend upon abstraction.
+
+B>Abstraction should not depend upon details.
+Details should depend upon abstraction.
+
+
+DEPENDENCY
+
+Here our code printMe() is dependent into out object of System class.
+we can say out object is dependency since we are using println method
+present in out object.
+
+```java
+
+public class DependencyDEMO{
+public void printMe(){
+    System.out.println("Hello");
+}
+}
+```
+
+lets say we are writing a report that generate report in JSON format and below function
+will write report into DISK.
+
+Here ,JSONFormatter and FileWriter has the direct dependency on ReportService i.e tightly coupled
+because we are instantiate these class directly inside writeReport
+with new KeyWords.
+
+```java
+
+public class ReportService{
+    
+    public void writeReport(){
+        
+        Report report=new Report();
+        //Build the report
+        JSONFormatter formatter=new JSONFormatter();
+       
+        String report=formatter.format(report);
+       
+        FileWriter writer =new FileWriter("report.json"); 
+        //write out report
+        writer.write();
+    }
+}
+```
+
+
+Lets say in future our clients wants to change the format from JSON to HTML.
+We would need to change ReportService class as well which is not a very good idea.
+
+
+
+
+```java
+public class ReportService{
+ /*
+    Formatter and Writer here are the interface/Abstract class
+    we can pass any formatter and writer object.
+    hence dependency is inverted meaning ReportService doesn`t have
+    direct dependency instead object instantiation is passed into
+    outside class.
+  */
+public void writeReport(Formatter formatter,Writer writer){
+   
+    Report report=new Report();
+    //Build the report
+    
+    String report =formatter.format(report);
+    
+    //write our report
+    
+    writer.write("my-report");
+}
+}
+```
 
 
